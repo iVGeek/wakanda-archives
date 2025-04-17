@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wakanda Archives | The Secret Nation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>𑣿</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Afrocentric Font -->
@@ -40,7 +41,6 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                url('https://i.redd.it/9w6j8z6x3jq21.jpg'),
                 radial-gradient(circle at 10% 20%, rgba(13, 110, 158, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
             background-size: cover;
@@ -58,6 +58,87 @@
         .wakandan-font {
             font-family: 'Wakandan', sans-serif;
             font-size: 1.2em;
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+
+        .meteorite-animation {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .meteorite {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at center, var(--vibranium-blue) 0%, var(--tech-teal) 70%);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--tech-teal);
+            animation: meteorite-fall 3s ease-in forwards;
+        }
+
+        @keyframes meteorite-fall {
+            0% { top: -50px; opacity: 0; }
+            20% { opacity: 1; }
+            80% { top: 80%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .impact {
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--vibranium-gold) 0%, transparent 70%);
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: impact-expand 1.5s 2.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes impact-expand {
+            0% { width: 0; height: 0; opacity: 0.8; }
+            100% { width: 200px; height: 200px; opacity: 0; }
+        }
+
+        .loading-text {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--tech-teal);
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-shadow: var(--text-glow);
+        }
+
+        .signal-text {
+            opacity: 0;
+            animation: signal-flicker 4s 3.5s infinite alternate;
+        }
+
+        @keyframes signal-flicker {
+            0%, 20% { opacity: 0; }
+            30%, 70% { opacity: 1; }
+            80%, 100% { opacity: 0; }
         }
 
         /* Header Styles */
@@ -609,7 +690,7 @@
         }
 
         .map-tooltip h4 {
-            color: var (--vibranium-gold);
+            color: var(--vibranium-gold);
             margin-bottom: 0.5rem;
         }
 
@@ -742,7 +823,7 @@
         }
 
         .credits a {
-            color: var (--tech-teal);
+            color: var(--tech-teal);
             text-decoration: none;
         }
 
@@ -1112,36 +1193,31 @@
         .detail-text p {
             margin-bottom: 1rem;
         }
+
+        /* Black Panther Necklace Background Fix */
+        .tech-item[data-detail="vibranium-power"] .tech-img {
+            background-image: url('https://i.imgur.com/JqYeZvn.jpg');
+        }
+
+        /* Border Optimizations */
+        .about-card, .tech-item, .royal-member, .calendar-event {
+            border-width: 1px;
+            box-sizing: border-box;
+        }
     </style>
-    <!-- Add favicon -->
-    <link rel="icon" href="https://terrigen-cdn-dev.marvel.com/content/prod/1x/blackpanther_comics_crd_01.jpg" type="image/x-icon">
-    <script>
-        // Ensure CORS headers are valid for cross-origin requests
-        document.addEventListener('DOMContentLoaded', () => {
-            const corsFix = (url) => {
-                const proxy = 'https://cors-anywhere.herokuapp.com/';
-                return proxy + url;
-            };
-
-            // Example: Update image or video sources to use the proxy
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.src = corsFix(img.src);
-            });
-
-            const videos = document.querySelectorAll('video source');
-            videos.forEach(video => {
-                video.src = corsFix(video.src);
-            });
-        });
-    </script>
 </head>
 <body>
     <!-- Loading Animation -->
-    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 10000; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-align: center;">
-        <div>
-            <div id="meteor-animation" style="width: 100%; height: 300px; background: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/blackpanther_comics_crd_01.jpg') no-repeat center; background-size: contain;"></div>
-            <p id="loading-text">Finding signal...<br>Tracing vibranium meteorite path...</p>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="meteorite-animation">
+            <div class="meteorite"></div>
+            <div class="impact"></div>
+        </div>
+        <div class="loading-text">
+            <div>Locating vibranium signature...</div>
+            <div class="signal-text">Tracing meteorite path...</div>
+            <div class="signal-text" style="animation-delay: 1s;">Scanning for Wakanda...</div>
+            <div class="signal-text" style="animation-delay: 2s;">Signal secured...</div>
         </div>
     </div>
 
@@ -1216,7 +1292,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <video class="hero-video" autoplay muted loop>
-            <source src="https://cdn.marvel.com/content/1x/black_panther_comics_trailer.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-over-a-city-at-night-12211-large.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-content">
@@ -1239,7 +1315,7 @@
                    around the crater and formed the nation of Wakanda, with the Black Panther serving as both 
                    ruler and protector.</p>
                 <div class="comic-panel">
-                    <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/blackpanther_comics_crd_01.jpg" alt="Wakanda History" style="width: 100%; border-radius: 5px;">
+                    <p class="wakandan-writing">𑣿𑣩𑣑𑣜𑣥𑣞 𑣁𑣑𑣗𑣥𑣚𑣥𑣩 𑣁𑣑𑣗𑣥𑣚𑣥𑣩 𑣜𑣥𑣞𑣞𑣥𑣩</p>
                     <p><em>"In Wakanda, we know better than to let our fear decide our future." - King T'Chaka</em></p>
                 </div>
             </div>
@@ -1286,7 +1362,7 @@
         <h2 class="section-title">Vibranium Technology</h2>
         <div class="tech-showcase">
             <div class="tech-item" data-detail="vibranium-power">
-                <div class="tech-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/blackpanther_comics_crd_01.jpg');"></div>
+                <div class="tech-img"></div>
                 <div class="tech-content">
                     <h3>Vibranium Power</h3>
                     <p>Vibranium absorbs kinetic energy, making it the perfect power source. Wakandan cities 
@@ -1296,7 +1372,7 @@
                 </div>
             </div>
             <div class="tech-item" data-detail="medical-advancements">
-                <div class="tech-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/shuri_comics_crd_01.jpg');"></div>
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Shuri-Medical-Lab-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Medical Advancements</h3>
                     <p>Wakandan medicine can heal wounds in hours, regrow damaged tissue, and cure diseases 
@@ -1305,7 +1381,7 @@
                 </div>
             </div>
             <div class="tech-item" data-detail="transportation">
-                <div class="tech-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/royal_talon_fighter_comics_crd_01.jpg');"></div>
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Royal-Talon-Fighter-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Transportation</h3>
                     <p>From vibranium-powered maglev trains to silent hovercraft and space-faring vessels, 
@@ -1314,7 +1390,7 @@
                 </div>
             </div>
             <div class="tech-item" data-detail="kimoyo-beads">
-                <div class="tech-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/kimoyo_beads_comics_crd_01.jpg');"></div>
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Kimoyo-Beads-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Kimoyo Beads</h3>
                     <p>These wearable devices function as communication tools, medical scanners, holographic 
@@ -1323,7 +1399,7 @@
                 </div>
             </div>
             <div class="tech-item" data-detail="defense-systems">
-                <div class="tech-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/wakanda_shields_comics_crd_01.jpg');"></div>
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakanda-Shields-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Defense Systems</h3>
                     <p>Wakanda's energy shields can protect entire cities. The Border Tribe uses vibranium 
@@ -1332,7 +1408,7 @@
                 </div>
             </div>
             <div class="tech-item" data-detail="agricultural-tech">
-                <div class="tech-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/wakandan_farming_comics_crd_01.jpg');"></div>
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Farming-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Agricultural Tech</h3>
                     <p>Vibranium-enhanced soil and vertical farming allow Wakanda to produce abundant food 
@@ -1425,7 +1501,7 @@
         <h2 class="section-title">The Royal Family</h2>
         <div class="royal-grid">
             <div class="royal-member" data-detail="queen-ramonda">
-                <div class="royal-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/queen_ramonda_comics_crd_01.jpg');"></div>
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Queen-Ramonda-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>Queen Ramonda</h3>
                     <div class="royal-title">Queen Mother of Wakanda</div>
@@ -1434,7 +1510,7 @@
                 </div>
             </div>
             <div class="royal-member" data-detail="king-tchalla">
-                <div class="royal-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/blackpanther_comics_crd_01.jpg');"></div>
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/TChalla-in-Black-Panther.jpg');"></div>
                 <div class="royal-info">
                     <h3>King T'Challa</h3>
                     <div class="royal-title">The Black Panther</div>
@@ -1443,7 +1519,7 @@
                 </div>
             </div>
             <div class="royal-member" data-detail="princess-shuri">
-                <div class="royal-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/shuri_comics_crd_01.jpg');"></div>
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Shuri-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>Princess Shuri</h3>
                     <div class="royal-title">Head of Wakandan Design Group</div>
@@ -1452,7 +1528,7 @@
                 </div>
             </div>
             <div class="royal-member" data-detail="okoye">
-                <div class="royal-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/okoye_comics_crd_01.jpg');"></div>
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Okoye-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>Okoye</h3>
                     <div class="royal-title">General of the Dora Milaje</div>
@@ -1461,7 +1537,7 @@
                 </div>
             </div>
             <div class="royal-member" data-detail="mbaku">
-                <div class="royal-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/mbaku_comics_crd_01.jpg');"></div>
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/MBaku-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>M'Baku</h3>
                     <div class="royal-title">Leader of the Jabari Tribe</div>
@@ -1470,7 +1546,7 @@
                 </div>
             </div>
             <div class="royal-member" data-detail="nakia">
-                <div class="royal-img" style="background-image: url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/nakia_comics_crd_01.jpg');"></div>
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Nakia-in-Black-Panther.jpg');"></div>
                 <div class="royal-info">
                     <h3>Nakia</h3>
                     <div class="royal-title">War Dog</div>
@@ -1591,6 +1667,19 @@
     </div>
 
     <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            
+            // After animation completes (5 seconds), fade out
+            setTimeout(function() {
+                loadingScreen.style.opacity = '0';
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                }, 1000);
+            }, 5000);
+        });
+
         // Create vibranium particles
         document.addEventListener('DOMContentLoaded', function() {
             const particlesContainer = document.getElementById('particles');
@@ -2054,31 +2143,6 @@
                 }
             }
         });
-
-        // Ensure images load properly
-        document.querySelectorAll('img').forEach(img => {
-            img.onerror = () => {
-                img.src = 'https://example.com/placeholder.jpg'; // Fallback image
-            };
-        });
-
-        // Loading animation
-        window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loading-screen');
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => loadingScreen.style.display = 'none', 500);
-            }, 3000); // Adjust duration as needed
-        });
-
-        // Optimize borders and layout
-        document.querySelectorAll('.about-card, .tech-item, .royal-member').forEach(item => {
-            item.style.border = '2px solid rgba(212, 175, 55, 0.5)';
-            item.style.padding = '1.5rem';
-        });
-
-        // Fix Black Panther necklace background
-        document.querySelector('.logo-img').style.backgroundImage = "url('https://example.com/black-panther-necklace.png')";
     </script>
 </body>
 </html>
