@@ -40,8 +40,11 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
+                url('https://i.redd.it/9w6j8z6x3jq21.jpg'),
                 radial-gradient(circle at 10% 20%, rgba(13, 110, 158, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
+            background-size: cover;
+            background-blend-mode: overlay;
             font-weight: 400;
             letter-spacing: 0.5px;
         }
@@ -310,6 +313,7 @@
             backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .about-card::before {
@@ -373,11 +377,13 @@
             border: 1px solid var(--vibranium-blue);
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
 
         .tech-item:hover {
             border-color: var(--tech-teal);
             box-shadow: 0 5px 20px rgba(0, 200, 200, 0.3);
+            transform: translateY(-5px);
         }
 
         .tech-img {
@@ -441,6 +447,13 @@
             padding: 1.5rem;
             border: 1px solid rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 5px 5px 15px rgba(0, 200, 200, 0.2);
         }
 
         .timeline-item::before {
@@ -480,6 +493,7 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            cursor: pointer;
         }
 
         .royal-member:hover {
@@ -541,6 +555,9 @@
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
+            background-image: url('https://i.pinimg.com/originals/3e/3e/3b/3e3e3b3e3e3e3b3e3e3e3b3e3e3e3b3e.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
         .map-point {
@@ -614,6 +631,7 @@
             border-radius: 5px;
             padding: 1rem;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .calendar-event:hover {
@@ -1023,6 +1041,77 @@
             background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.05) 50%, transparent 100%);
             pointer-events: none;
         }
+
+        /* Detail Pages */
+        .detail-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 18, 0.95);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(42, 8, 69, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid var(--tech-teal);
+            position: relative;
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .detail-close:hover {
+            color: var(--tech-teal);
+        }
+
+        .detail-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .detail-header h2 {
+            color: var(--vibranium-gold);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 2px solid var(--vibranium-gold);
+        }
+
+        .detail-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .detail-text p {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -1113,7 +1202,7 @@
     <section id="about" class="section">
         <h2 class="section-title">The Nation of Wakanda</h2>
         <div class="about-grid">
-            <div class="about-card">
+            <div class="about-card" data-detail="history">
                 <h3>History</h3>
                 <p>Wakanda's history dates back over 10,000 years when a massive meteorite containing vibranium, 
                    the strongest metal in the universe, crashed into the heart of Africa. Five tribes settled 
@@ -1124,7 +1213,7 @@
                     <p><em>"In Wakanda, we know better than to let our fear decide our future." - King T'Chaka</em></p>
                 </div>
             </div>
-            <div class="about-card">
+            <div class="about-card" data-detail="geography">
                 <h3>Geography</h3>
                 <p>Located in Northeast Africa, Wakanda is bordered by Kenya, Ethiopia, and South Sudan. 
                    The capital, Birnin Zana (the Golden City), sits at the center of the nation. Wakanda's 
@@ -1134,7 +1223,7 @@
                     𑣿𑣩𑣑𑣜𑣥𑣞 𑣜𑣥𑣞𑣞𑣥𑣩 𑣁𑣑𑣗𑣥𑣚𑣥𑣩
                 </div>
             </div>
-            <div class="about-card">
+            <div class="about-card" data-detail="government">
                 <h3>Government</h3>
                 <p>Wakanda is a constitutional monarchy with a council of tribal elders advising the king or queen. 
                    The ruler also serves as the Black Panther, protector of Wakanda. The Dora Milaje serve as 
@@ -1150,7 +1239,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="about-card">
+            <div class="about-card" data-detail="economy">
                 <h3>Economy</h3>
                 <p>Despite its isolation, Wakanda has the most advanced economy on Earth, powered by vibranium 
                    technology. The nation is self-sufficient with advanced agriculture, manufacturing, and energy 
@@ -1166,8 +1255,8 @@
     <section id="technology" class="section">
         <h2 class="section-title">Vibranium Technology</h2>
         <div class="tech-showcase">
-            <div class="tech-item">
-                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Vibranium-in-Black-Panther.jpg');">⚡</div>
+            <div class="tech-item" data-detail="vibranium-power">
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Vibranium-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Vibranium Power</h3>
                     <p>Vibranium absorbs kinetic energy, making it the perfect power source. Wakandan cities 
@@ -1176,8 +1265,8 @@
                     <div class="wakandan-writing" style="margin-top: 0.5rem;">𑣿𑣩𑣑𑣜𑣥𑣞 𑣜𑣥𑣞𑣞𑣥𑣩</div>
                 </div>
             </div>
-            <div class="tech-item">
-                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Shuri-Medical-Lab-in-Black-Panther.jpg');">💊</div>
+            <div class="tech-item" data-detail="medical-advancements">
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Shuri-Medical-Lab-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Medical Advancements</h3>
                     <p>Wakandan medicine can heal wounds in hours, regrow damaged tissue, and cure diseases 
@@ -1185,8 +1274,8 @@
                        reserved for the Black Panther.</p>
                 </div>
             </div>
-            <div class="tech-item">
-                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Royal-Talon-Fighter-in-Black-Panther.jpg');">🚀</div>
+            <div class="tech-item" data-detail="transportation">
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Royal-Talon-Fighter-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Transportation</h3>
                     <p>From vibranium-powered maglev trains to silent hovercraft and space-faring vessels, 
@@ -1194,8 +1283,8 @@
                        Fighter is the pinnacle of Wakandan aerospace engineering.</p>
                 </div>
             </div>
-            <div class="tech-item">
-                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Kimoyo-Beads-in-Black-Panther.jpg');">📱</div>
+            <div class="tech-item" data-detail="kimoyo-beads">
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Kimoyo-Beads-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Kimoyo Beads</h3>
                     <p>These wearable devices function as communication tools, medical scanners, holographic 
@@ -1203,8 +1292,8 @@
                        and can be controlled through gestures.</p>
                 </div>
             </div>
-            <div class="tech-item">
-                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakanda-Shields-in-Black-Panther.jpg');">🛡️</div>
+            <div class="tech-item" data-detail="defense-systems">
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakanda-Shields-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Defense Systems</h3>
                     <p>Wakanda's energy shields can protect entire cities. The Border Tribe uses vibranium 
@@ -1212,8 +1301,8 @@
                        by multiple defense layers.</p>
                 </div>
             </div>
-            <div class="tech-item">
-                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Farming-in-Black-Panther.jpg');">🌱</div>
+            <div class="tech-item" data-detail="agricultural-tech">
+                <div class="tech-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Farming-in-Black-Panther.jpg');"></div>
                 <div class="tech-content">
                     <h3>Agricultural Tech</h3>
                     <p>Vibranium-enhanced soil and vertical farming allow Wakanda to produce abundant food 
@@ -1228,7 +1317,7 @@
     <section id="culture" class="section">
         <h2 class="section-title">Wakandan Culture</h2>
         <div class="culture-timeline">
-            <div class="timeline-item">
+            <div class="timeline-item" data-detail="foundation">
                 <div class="timeline-date">Ancient Times</div>
                 <h3>Foundation of Wakanda</h3>
                 <p>The five tribes - Border, Merchant, Mining, River, and Jabari - unite under Bashenga, 
@@ -1236,32 +1325,32 @@
                    becomes the primary deity.</p>
                 <div class="wakandan-writing">𑣿𑣩𑣑𑣜𑣥𑣞 𑣜𑣥𑣞𑣞𑣥𑣩</div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-detail="golden-city">
                 <div class="timeline-date">1000 AD</div>
                 <h3>Golden City Established</h3>
                 <p>Birin Zana (Golden City) is founded as Wakanda's capital. The Great Mound is designated 
                    as the sacred site where vibranium is mined and studied.</p>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-detail="isolation-policy">
                 <div class="timeline-date">1600s</div>
                 <h3>Isolation Policy</h3>
                 <p>After encounters with European explorers and slavers, Wakanda adopts a strict isolationist 
                    policy. Advanced cloaking technology is developed to hide the nation's true nature.</p>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-detail="tech-renaissance">
                 <div class="timeline-date">1900s</div>
                 <h3>Technological Renaissance</h3>
                 <p>Under King T'Chaka's father, Wakanda experiences rapid technological advancement. 
                    Vibranium applications expand into medicine, energy, and computing.</p>
                 <div class="wakandan-writing">𑣿𑣩𑣑𑣜𑣥𑣞 𑣜𑣥𑣞𑣞𑣥𑣩</div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-detail="black-panther-return">
                 <div class="timeline-date">2016</div>
                 <h3>Return of the Black Panther</h3>
                 <p>T'Challa becomes king after his father's death. Wakanda briefly opens to the world 
                    before returning to isolation after the Blip.</p>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" data-detail="new-era">
                 <div class="timeline-date">2023</div>
                 <h3>New Era of Outreach</h3>
                 <p>Under Queen Ramonda and Princess Shuri, Wakanda begins limited outreach programs, 
@@ -1271,7 +1360,7 @@
         </div>
 
         <div class="about-grid" style="margin-top: 3rem;">
-            <div class="about-card">
+            <div class="about-card" data-detail="language">
                 <h3>Language & Writing</h3>
                 <p>Wakandans speak a variety of African languages, with Hausa being most common. The written 
                    language uses a unique script developed from ancient African writing systems combined with 
@@ -1280,19 +1369,19 @@
                     𑣿𑣩𑣑𑣜𑣥𑣞 𑣜𑣥𑣞𑣞𑣥𑣩 𑣁𑣑𑣗𑣥𑣚𑣥𑣩
                 </div>
             </div>
-            <div class="about-card">
+            <div class="about-card" data-detail="clothing">
                 <h3>Traditional Clothing</h3>
                 <p>Wakandan attire blends traditional African designs with vibranium-infused fabrics. 
                    The colors and patterns indicate tribal affiliation and social status. Royal garments 
                    incorporate vibranium threads that can harden into armor.</p>
             </div>
-            <div class="about-card">
+            <div class="about-card" data-detail="arts">
                 <h3>Arts & Music</h3>
                 <p>Wakandan art combines ancient techniques with holographic displays. Traditional drumming 
                    and chanting accompany most ceremonies. Griots (storytellers) preserve history through 
                    oral traditions enhanced by holographic projections.</p>
             </div>
-            <div class="about-card">
+            <div class="about-card" data-detail="spirituality">
                 <h3>Spiritual Beliefs</h3>
                 <p>The Panther Goddess Bast is the primary deity, though each tribe has its own spiritual 
                    traditions. Ancestor worship is common, with advanced holographic technology allowing 
@@ -1305,8 +1394,8 @@
     <section id="royal-family" class="section">
         <h2 class="section-title">The Royal Family</h2>
         <div class="royal-grid">
-            <div class="royal-member">
-                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Queen-Ramonda-in-Black-Panther-Wakanda-Forever.jpg');">👑</div>
+            <div class="royal-member" data-detail="queen-ramonda">
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Queen-Ramonda-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>Queen Ramonda</h3>
                     <div class="royal-title">Queen Mother of Wakanda</div>
@@ -1314,8 +1403,8 @@
                        Mother to T'Challa and Shuri.</p>
                 </div>
             </div>
-            <div class="royal-member">
-                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/TChalla-in-Black-Panther.jpg');">🦸</div>
+            <div class="royal-member" data-detail="king-tchalla">
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/TChalla-in-Black-Panther.jpg');"></div>
                 <div class="royal-info">
                     <h3>King T'Challa</h3>
                     <div class="royal-title">The Black Panther</div>
@@ -1323,8 +1412,8 @@
                        protecting its secrets. Enhanced by the Heart-Shaped Herb.</p>
                 </div>
             </div>
-            <div class="royal-member">
-                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Shuri-in-Black-Panther-Wakanda-Forever.jpg');">👩‍🔬</div>
+            <div class="royal-member" data-detail="princess-shuri">
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Shuri-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>Princess Shuri</h3>
                     <div class="royal-title">Head of Wakandan Design Group</div>
@@ -1332,8 +1421,8 @@
                        of the latest Black Panther suits and kimoyo bead technology.</p>
                 </div>
             </div>
-            <div class="royal-member">
-                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Okoye-in-Black-Panther-Wakanda-Forever.jpg');">💂</div>
+            <div class="royal-member" data-detail="okoye">
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Okoye-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>Okoye</h3>
                     <div class="royal-title">General of the Dora Milaje</div>
@@ -1341,8 +1430,8 @@
                        master of vibranium spear combat.</p>
                 </div>
             </div>
-            <div class="royal-member">
-                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/MBaku-in-Black-Panther-Wakanda-Forever.jpg');">🛡️</div>
+            <div class="royal-member" data-detail="mbaku">
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/MBaku-in-Black-Panther-Wakanda-Forever.jpg');"></div>
                 <div class="royal-info">
                     <h3>M'Baku</h3>
                     <div class="royal-title">Leader of the Jabari Tribe</div>
@@ -1350,8 +1439,8 @@
                        but now serves on the royal council.</p>
                 </div>
             </div>
-            <div class="royal-member">
-                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Nakia-in-Black-Panther.jpg');">👓</div>
+            <div class="royal-member" data-detail="nakia">
+                <div class="royal-img" style="background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Nakia-in-Black-Panther.jpg');"></div>
                 <div class="royal-info">
                     <h3>Nakia</h3>
                     <div class="royal-title">War Dog</div>
@@ -1377,22 +1466,22 @@
             <div class="festival-calendar">
                 <h3 style="text-align: center; color: var(--vibranium-gold); margin-bottom: 1rem;">Cultural Festivals</h3>
                 <div class="calendar-grid">
-                    <div class="calendar-event">
+                    <div class="calendar-event" data-detail="vibranium-day">
                         <div class="event-date">January 15</div>
                         <h4>Vibranium Discovery Day</h4>
                         <p>Celebrates the arrival of the vibranium meteor with light shows and tech demonstrations.</p>
                     </div>
-                    <div class="calendar-event">
+                    <div class="calendar-event" data-detail="panther-ascension">
                         <div class="event-date">March 22</div>
                         <h4>Panther's Ascension</h4>
                         <p>Honors the Black Panther with martial arts displays and ancestral ceremonies.</p>
                     </div>
-                    <div class="calendar-event">
+                    <div class="calendar-event" data-detail="tribal-unity">
                         <div class="event-date">June 8</div>
                         <h4>Tribal Unity Festival</h4>
                         <p>All five tribes showcase their unique traditions in a week-long celebration.</p>
                     </div>
-                    <div class="calendar-event">
+                    <div class="calendar-event" data-detail="harvest-bast">
                         <div class="event-date">October 12</div>
                         <h4>Harvest of Bast</h4>
                         <p>Thanksgiving to the Panther Goddess featuring feasts and spiritual rituals.</p>
@@ -1401,7 +1490,7 @@
             </div>
 
             <div class="about-grid" style="margin-top: 2rem;">
-                <div class="about-card">
+                <div class="about-card" data-detail="cuisine">
                     <h3>Wakandan Cuisine</h3>
                     <p>Traditional dishes include:</p>
                     <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
@@ -1412,7 +1501,7 @@
                         <li>• Heart-Shaped Herb ceremonial drink</li>
                     </ul>
                 </div>
-                <div class="about-card">
+                <div class="about-card" data-detail="virtual-tours">
                     <h3>Virtual Tours</h3>
                     <p>Experience Wakanda through our holographic virtual tours:</p>
                     <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
@@ -1456,6 +1545,20 @@
             </div>
         </div>
     </footer>
+
+    <!-- Detail Pages -->
+    <div id="detailPage" class="detail-page">
+        <div class="detail-content">
+            <button class="detail-close">✕</button>
+            <div class="detail-header">
+                <h2 id="detailTitle">Detail Title</h2>
+            </div>
+            <div class="detail-img" id="detailImage"></div>
+            <div class="detail-text" id="detailText">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
 
     <script>
         // Create vibranium particles
@@ -1575,6 +1678,7 @@
                 point.style.top = loc.y + '%';
                 point.dataset.title = loc.title;
                 point.dataset.desc = loc.description;
+                point.dataset.detail = loc.title.toLowerCase().replace(' ', '-');
                 
                 point.addEventListener('mouseenter', function() {
                     this.classList.add('active');
@@ -1588,6 +1692,10 @@
                 point.addEventListener('mouseleave', function() {
                     this.classList.remove('active');
                     mapTooltip.style.display = 'none';
+                });
+                
+                point.addEventListener('click', function() {
+                    showDetailPage(this.dataset.detail);
                 });
                 
                 wakandaMap.appendChild(point);
@@ -1638,6 +1746,283 @@
                     alert(message);
                 });
             });
+
+            // Detail page functionality
+            const detailPage = document.getElementById('detailPage');
+            const detailClose = document.querySelector('.detail-close');
+            const detailTitle = document.getElementById('detailTitle');
+            const detailImage = document.getElementById('detailImage');
+            const detailText = document.getElementById('detailText');
+            
+            // Close detail page
+            detailClose.addEventListener('click', function() {
+                detailPage.style.display = 'none';
+            });
+            
+            // Close when clicking outside content
+            detailPage.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+            
+            // Set up click handlers for all detail items
+            document.querySelectorAll('[data-detail]').forEach(item => {
+                item.addEventListener('click', function() {
+                    showDetailPage(this.dataset.detail);
+                });
+            });
+            
+            // Detail page content
+            const detailContent = {
+                // About Wakanda
+                'history': {
+                    title: 'History of Wakanda',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-History-in-Black-Panther.jpg',
+                    text: `<p>Wakanda's history is one of resilience, innovation, and secrecy. Founded over 10,000 years ago when a massive vibranium meteor struck the African continent, Wakanda developed in isolation from the rest of the world.</p>
+                    <p>The five original tribes - the Border Tribe, Merchant Tribe, Mining Tribe, River Tribe, and Jabari Tribe - united under Bashenga, the first Black Panther and king of Wakanda. The Heart-Shaped Herb, mutated by vibranium radiation, granted the Black Panther enhanced abilities to protect the nation.</p>
+                    <p>Throughout its history, Wakanda maintained its independence, resisting colonization through a combination of strategic isolation and advanced technology. The nation's wealth and technological superiority grew exponentially as they mastered the uses of vibranium.</p>
+                    <p>In modern times, under King T'Chaka and later King T'Challa, Wakanda began cautiously engaging with the outside world while protecting its secrets. The nation played a crucial role in global events while maintaining its sovereignty.</p>`
+                },
+                'geography': {
+                    title: 'Geography of Wakanda',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakanda-Map-in-Black-Panther.jpg',
+                    text: `<p>Wakanda is located in Northeast Africa, bordered by Kenya, Ethiopia, and South Sudan. The nation's geography has been carefully concealed from outsiders through advanced holographic technology that makes the country appear as a third-world nation.</p>
+                    <p>The capital city, Birnin Zana (the Golden City), is located at the center of Wakanda, built around the Great Mound where the original vibranium meteor struck. The city showcases Wakanda's technological marvels with towering vibranium-infused structures and advanced infrastructure.</p>
+                    <p>Other notable geographic features include:</p>
+                    <ul>
+                        <li><strong>Warrior Falls:</strong> Sacred waterfalls where challenges for the throne take place</li>
+                        <li><strong>Jabari Lands:</strong> Mountainous region home to the traditionalist Jabari tribe</li>
+                        <li><strong>River Province:</strong> Lush agricultural region along the Wakanda River</li>
+                        <li><strong>Border Mountains:</strong> Natural barrier enhanced with defensive technology</li>
+                    </ul>
+                    <p>Wakanda's climate ranges from tropical in the river valleys to temperate in the highlands, all carefully managed through environmental technology.</p>`
+                },
+                'government': {
+                    title: 'Wakandan Government',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Government-in-Black-Panther.jpg',
+                    text: `<p>Wakanda is a constitutional monarchy with a unique blend of traditional tribal governance and advanced technological administration. The nation is ruled by a king or queen who also serves as the Black Panther, protector of Wakanda.</p>
+                    <p>Key aspects of Wakanda's government include:</p>
+                    <ul>
+                        <li><strong>Royal Council:</strong> Composed of representatives from each of the five tribes who advise the monarch</li>
+                        <li><strong>Dora Milaje:</strong> Elite all-female special forces who serve as royal guards</li>
+                        <li><strong>Tribal Elders:</strong> Leaders who maintain traditional governance within their tribes</li>
+                        <li><strong>Design Group:</strong> Scientific council led by the head of Wakandan research and development</li>
+                    </ul>
+                    <p>Succession to the throne follows traditional lines but can be challenged through ritual combat at Warrior Falls. The reigning monarch gains enhanced abilities through the Heart-Shaped Herb, connecting them to the Panther Goddess Bast and previous Black Panthers in the Ancestral Plane.</p>
+                    <p>Despite its monarchy, Wakanda has a sophisticated system of checks and balances that prevents absolute rule, with each tribe maintaining significant autonomy in local matters.</p>`
+                },
+                'economy': {
+                    title: 'Wakandan Economy',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Economy-in-Black-Panther.jpg',
+                    text: `<p>Wakanda possesses the most advanced economy on Earth, entirely self-sufficient and powered by vibranium technology. Unlike other nations, Wakanda has never needed foreign trade or investment, maintaining complete economic independence.</p>
+                    <p>The pillars of Wakanda's economy include:</p>
+                    <ul>
+                        <li><strong>Vibranium Technology:</strong> The foundation of all Wakandan industry and innovation</li>
+                        <li><strong>Advanced Agriculture:</strong> Highly efficient farming using vibranium-enhanced techniques</li>
+                        <li><strong>Manufacturing:</strong> Production of goods for domestic use with zero waste</li>
+                        <li><strong>Energy Production:</strong> Clean, limitless power from vibranium reactors</li>
+                    </ul>
+                    <p>Wakanda has no poverty, unemployment, or economic inequality. All citizens have access to housing, healthcare, education, and meaningful work. The nation maintains no foreign debt and its currency, while existing, is rarely used in international trade due to Wakanda's isolation.</p>
+                    <p>Recent outreach programs have begun limited technology sharing with other African nations, creating new economic partnerships while carefully protecting Wakanda's secrets.</p>`
+                },
+                // Technology
+                'vibranium-power': {
+                    title: 'Vibranium Power Systems',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Vibranium-Power-in-Black-Panther.jpg',
+                    text: `<p>Vibranium is the cornerstone of Wakanda's technological superiority, particularly in energy production. Unlike any other material on Earth, vibranium has the unique ability to absorb, store, and release kinetic energy, making it the perfect power source.</p>
+                    <p>Wakanda's energy infrastructure includes:</p>
+                    <ul>
+                        <li><strong>City Reactors:</strong> Massive vibranium cores that provide clean, limitless energy to entire urban areas</li>
+                        <li><strong>Kinetic Storage:</strong> Systems that capture and redistribute energy from impacts and vibrations</li>
+                        <li><strong>Wireless Transmission:</strong> Energy beamed directly to devices without need for cables or batteries</li>
+                        <li><strong>Environmental Controls:</strong> Climate regulation and weather modification systems</li>
+                    </ul>
+                    <p>The Great Mound, where the original vibranium meteor struck, remains the primary source of the metal. Mining operations are carefully controlled to prevent depletion, with extensive recycling programs ensuring minimal waste.</p>
+                    <p>Vibranium energy has no pollution, no radiation, and no dangerous byproducts, making Wakanda the only completely clean-energy civilization on Earth.</p>`
+                },
+                'medical-advancements': {
+                    title: 'Wakandan Medical Technology',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Medicine-in-Black-Panther.jpg',
+                    text: `<p>Wakanda's medical technology is centuries ahead of the outside world, capable of healing injuries and curing diseases considered untreatable elsewhere. The combination of vibranium-based devices and advanced biological research has created a healthcare system with virtually no limitations.</p>
+                    <p>Key medical advancements include:</p>
+                    <ul>
+                        <li><strong>Regenerative Healing:</strong> Ability to regrow damaged tissue and organs within hours</li>
+                        <li><strong>Disease Elimination:</strong> Cures for all known illnesses, including cancer and genetic disorders</li>
+                        <li><strong>Neural Mapping:</strong> Complete understanding and repair of brain functions</li>
+                        <li><strong>Life Extension:</strong> Significant slowing of aging processes</li>
+                        <li><strong>Kimoyo Beads:</strong> Wearable devices that monitor health and administer treatments</li>
+                    </ul>
+                    <p>The Heart-Shaped Herb, a plant mutated by vibranium radiation, grants enhanced physical abilities to the Black Panther. Its properties are closely guarded secrets, cultivated only for royal use.</p>
+                    <p>Wakandan medicine combines cutting-edge technology with traditional herbal knowledge, creating a holistic approach to health that maintains perfect balance between body and environment.</p>`
+                },
+                'transportation': {
+                    title: 'Wakandan Transportation',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Transport-in-Black-Panther.jpg',
+                    text: `<p>Wakanda's transportation systems utilize vibranium technology to create silent, efficient, and incredibly fast modes of travel that surpass anything in the outside world. From intracity transit to interstellar vessels, Wakandan engineering has perfected movement.</p>
+                    <p>Transportation technologies include:</p>
+                    <ul>
+                        <li><strong>Maglev Trains:</strong> Floating trains that connect all regions of Wakanda at supersonic speeds</li>
+                        <li><strong>Hovercraft:</strong> Silent personal vehicles that glide above the ground</li>
+                        <li><strong>Royal Talon Fighters:</strong> Advanced aircraft capable of space travel and invisibility</li>
+                        <li><strong>Teleportation Gates:</strong> Experimental technology for instantaneous travel</li>
+                        <li><strong>Vibranium Roads:</strong> Smart surfaces that guide and power vehicles automatically</li>
+                    </ul>
+                    <p>All Wakandan transportation is powered by clean vibranium energy, producing no emissions or noise pollution. The systems are fully integrated, with kimoyo beads serving as universal access keys and navigation aids.</p>
+                    <p>For international travel, Wakanda maintains a fleet of cloaked vessels that can reach any point on Earth within hours while remaining undetectable.</p>`
+                },
+                'kimoyo-beads': {
+                    title: 'Kimoyo Bead Technology',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Kimoyo-Beads-Detail-in-Black-Panther.jpg',
+                    text: `<p>Kimoyo beads are Wakanda's most versatile and ubiquitous technology, serving as wearable computers that interface with all aspects of Wakandan life. Developed by Princess Shuri, these beads combine communication, computing, and medical functions in an elegant, customizable format.</p>
+                    <p>Key features of kimoyo beads include:</p>
+                    <ul>
+                        <li><strong>Communication:</strong> Instant contact with any other bead or system in Wakanda</li>
+                        <li><strong>Health Monitoring:</strong> Continuous vital sign tracking and medical diagnostics</li>
+                        <li><strong>Holographic Display:</strong> Projection of 3D interfaces and information</li>
+                        <li><strong>Security Access:</strong> Identification and authorization for all Wakandan systems</li>
+                        <li><strong>Information Network:</strong> Connection to Wakanda's vast knowledge base</li>
+                        <li><strong>Gesture Control:</strong> Operation through hand movements and voice commands</li>
+                    </ul>
+                    <p>The beads are constructed from vibranium polymers that can rearrange themselves into different configurations based on need. A full set typically consists of 12-24 beads worn as a bracelet, with each bead capable of independent function or combining with others for more complex tasks.</p>
+                    <p>Kimoyo beads represent the perfect integration of technology and daily life, providing Wakandans with effortless access to their civilization's advancements while maintaining elegant simplicity.</p>`
+                },
+                'defense-systems': {
+                    title: 'Wakandan Defense Systems',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakanda-Defenses-in-Black-Panther.jpg',
+                    text: `<p>Wakanda's defense technologies are the most advanced on Earth, developed over centuries to protect the nation's sovereignty and vibranium resources. From personal armor to city-wide shields, Wakanda can repel any threat while remaining virtually invisible to outsiders.</p>
+                    <p>Key defense systems include:</p>
+                    <ul>
+                        <li><strong>Energy Shields:</strong> Protective barriers that can cover entire cities or individual warriors</li>
+                        <li><strong>Cloaking Technology:</strong> Holographic projections that hide Wakanda from detection</li>
+                        <li><strong>Border Tribe Armor:</strong> Vibranium-weave suits with camouflage capabilities</li>
+                        <li><strong>Sonic Weapons:</strong> Non-lethal disarmament devices</li>
+                        <li><strong>Dora Milaje Gear:</strong> Specialized combat equipment for the royal guard</li>
+                        <li><strong>Automated Defenses:</strong> Drone systems that patrol Wakanda's perimeter</li>
+                    </ul>
+                    <p>The Black Panther's suit represents the pinnacle of Wakandan defensive technology, with kinetic energy absorption, enhanced strength, and stealth capabilities. The suit is stored in a necklace when not in use, deploying instantly when needed.</p>
+                    <p>Wakanda's defensive posture has shifted in recent years from complete isolation to controlled engagement, with security measures adapting to allow limited interaction with the outside world while maintaining ultimate protection.</p>`
+                },
+                'agricultural-tech': {
+                    title: 'Wakandan Agriculture',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Wakandan-Farming-Detail-in-Black-Panther.jpg',
+                    text: `<p>Wakanda's agricultural systems combine ancient farming wisdom with cutting-edge vibranium technology to produce abundant, nutritious food in minimal space. The nation is completely self-sufficient, with food production methods that have zero environmental impact.</p>
+                    <p>Agricultural innovations include:</p>
+                    <ul>
+                        <li><strong>Vertical Farms:</strong> Towering structures that grow crops year-round with minimal water</li>
+                        <li><strong>Vibranium-Enhanced Soil:</strong> Specially treated earth that boosts growth and nutrition</li>
+                        <li><strong>Genetic Optimization:</strong> Crops engineered for maximum yield and disease resistance</li>
+                        <li><strong>Precision Harvesting:</strong> Automated systems that gather produce at perfect ripeness</li>
+                        <li><strong>Closed Ecosystems:</self-contained environments that mimic ideal growing conditions</li>
+                    </ul>
+                    <p>Traditional farming methods are still practiced in rural areas, particularly by the River Tribe, but even these benefit from subtle technological enhancements. Wakanda's cuisine blends these high-quality ingredients with centuries of culinary tradition, creating dishes that are both nourishing and culturally significant.</p>
+                    <p>The nation's food distribution systems ensure all citizens have access to fresh, healthy meals, with waste being completely recycled into new agricultural inputs.</p>`
+                },
+                // Royal Family
+                'queen-ramonda': {
+                    title: 'Queen Ramonda',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Queen-Ramonda-Full-in-Black-Panther-Wakanda-Forever.jpg',
+                    text: `<p>Queen Ramonda is the revered Queen Mother of Wakanda, mother to T'Challa and Shuri, and a central figure in Wakanda's leadership. After the death of her husband King T'Chaka, she guided Wakanda through turbulent times with wisdom and strength.</p>
+                    <p>Key aspects of Queen Ramonda's reign:</p>
+                    <ul>
+                        <li><strong>Leadership During Crisis:</strong> Steered Wakanda through the Blip and its aftermath</li>
+                        <li><strong>Cultural Preservation:</strong> Maintained Wakandan traditions while embracing necessary change</li>
+                        <li><strong>International Diplomacy:</strong> Represented Wakanda in global affairs with dignity</li>
+                        <li><strong>Family Guidance:</strong> Advised both T'Challa and Shuri during their transitions to leadership</li>
+                    </ul>
+                    <p>As Queen Mother, Ramonda holds a unique position in Wakandan society, serving as both a political leader and cultural touchstone. Her regal presence and deep connection to Wakanda's spiritual traditions have made her beloved by all tribes.</p>
+                    <p>Ramonda's leadership style blends traditional values with progressive vision, ensuring Wakanda's future while honoring its past. Her wisdom has been crucial in navigating Wakanda's increasing engagement with the outside world.</p>`
+                },
+                'king-tchalla': {
+                    title: 'King T\'Challa',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/TChalla-Full-in-Black-Panther.jpg',
+                    text: `<p>T'Challa, also known as the Black Panther, was the king of Wakanda and protector of its people. After the death of his father T'Chaka, T'Challa assumed the throne and guided Wakanda through a period of unprecedented change and global engagement.</p>
+                    <p>Key aspects of T'Challa's reign:</p>
+                    <ul>
+                        <li><strong>Technological Advancement:</strong> Supported Princess Shuri's innovations that pushed Wakanda's tech further</li>
+                        <li><strong>Global Outreach:</strong> Carefully opened Wakanda to the world while protecting its secrets</li>
+                        <li><strong>Avengers Membership:</strong> Fought alongside Earth's mightiest heroes when needed</li>
+                        <li><strong>Cultural Bridge:</strong> Connected Wakandan traditions with modern global society</li>
+                    </ul>
+                    <p>As the Black Panther, T'Challa possessed enhanced strength, speed, and senses granted by the Heart-Shaped Herb. His vibranium suit, designed by Shuri, could absorb and redirect kinetic energy, making him nearly invulnerable in combat.</p>
+                    <p>T'Challa's leadership was marked by compassion, wisdom, and a deep commitment to doing what was right for both Wakanda and the world. His vision of Wakanda as a force for global good while maintaining its cultural identity set the course for the nation's future.</p>`
+                },
+                'princess-shuri': {
+                    title: 'Princess Shuri',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Shuri-Full-in-Black-Panther-Wakanda-Forever.jpg',
+                    text: `<p>Princess Shuri is the brilliant younger sister of T'Challa and head of Wakanda's Design Group. As Wakanda's foremost scientist and inventor, she has pushed the nation's technology to even greater heights through her innovative genius.</p>
+                    <p>Key contributions by Shuri:</p>
+                    <ul>
+                        <li><strong>Kimoyo Beads:</strong> Developed the versatile wearable technology used by all Wakandans</li>
+                        <li><strong>Black Panther Suits:</strong> Designed advanced versions of the royal armor</li>
+                        <li><strong>Medical Breakthroughs:</strong> Created healing technologies that save countless lives</li>
+                        <li><strong>Energy Systems:</strong> Improved Wakanda's already-advanced power infrastructure</li>
+                        <li><strong>Vibranium Research:</strong> Discovered new applications for Wakanda's most valuable resource</li>
+                    </ul>
+                    <p>Shuri's intellect and curiosity drive her to constantly innovate, while her deep love for Wakanda ensures her inventions always serve the nation's best interests. Her playful personality and quick wit make her beloved by the people, even as they respect her incredible mind.</p>
+                    <p>After T'Challa's death, Shuri took on greater leadership responsibilities, eventually becoming the Black Panther herself while continuing her scientific work. She represents the perfect fusion of tradition and progress that defines modern Wakanda.</p>`
+                },
+                'okoye': {
+                    title: 'General Okoye',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/Okoye-Full-in-Black-Panther-Wakanda-Forever.jpg',
+                    text: `<p>Okoye is the formidable general of the Dora Milaje, Wakanda's elite all-female special forces. As the leader of Wakanda's military and chief protector of the royal family, she is one of the most respected and feared warriors in the nation.</p>
+                    <p>Key aspects of Okoye's service:</p>
+                    <ul>
+                        <li><strong>Military Leadership:</strong> Commands Wakanda's armed forces with unmatched skill</li>
+                        <li><strong>Royal Protection:</strong> Personally guards the king or queen in times of danger</li>
+                        <li><strong>Combat Mastery:</strong> Unrivaled expertise with vibranium spear and hand-to-hand techniques</li>
+                        <li><strong>Strategic Brilliance:</strong> Plans and executes complex military operations</li>
+                        <li><strong>Tradition Keeper:</strong> Maintains the ancient warrior codes of the Dora Milaje</li>
+                    </ul>
+                    <p>Okoye's loyalty to Wakanda is absolute, placing the nation's welfare above all else - even personal relationships. Her stern demeanor and uncompromising standards make her an intimidating presence, but her deep care for her warriors and country is unquestionable.</p>
+                    <p>As Wakanda's relationship with the outside world evolves, Okoye has adapted traditional combat techniques to modern threats, ensuring the Dora Milaje remain Earth's most effective fighting force.</p>`
+                },
+                'mbaku': {
+                    title: 'M\'Baku',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/11/MBaku-Full-in-Black-Panther-Wakanda-Forever.jpg',
+                    text: `<p>M'Baku is the formidable leader of the Jabari Tribe, the mountain-dwelling people who initially rejected vibranium technology and Wakanda's central government. Despite their differences, M'Baku has become a key ally to the royal family and serves on the national council.</p>
+                    <p>Key aspects of M'Baku's role:</p>
+                    <ul>
+                        <li><strong>Jabari Leadership:</strong> Commands respect through strength and wisdom</li>
+                        <li><strong>Council Member:</strong> Represents traditionalist views in Wakandan governance</li>
+                        <li><strong>Warrior Skills:</strong> Incredible physical power and combat ability</li>
+                        <li><strong>Cultural Preservation:</strong> Maintains ancient Wakandan traditions</li>
+                        <li><strong>Reluctant Hero:</strong> Steps up when Wakanda needs him despite differences</li>
+                    </ul>
+                    <p>The Jabari people live separately from mainstream Wakandan society in the northern mountains, following older ways and worshipping the gorilla god Hanuman instead of the Panther Goddess Bast. M'Baku embodies this independent spirit while recognizing the importance of Wakandan unity.</p>
+                    <p>Though he often clashes with the more technologically advanced factions of Wakanda, M'Baku's strength, courage, and unexpected humor have made him a valued - if unconventional - ally to the throne.</p>`
+                },
+                'nakia': {
+                    title: 'Nakia',
+                    image: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2018/02/Nakia-Full-in-Black-Panther.jpg',
+                    text: `<p>Nakia is a War Dog - Wakanda's elite undercover operatives who gather intelligence from around the world. Though she was once romantically involved with T'Challa, her dedication to helping those in need has taken her on a different path.</p>
+                    <p>Key aspects of Nakia's work:</p>
+                    <ul>
+                        <li><strong>Global Operations:</strong> Works undercover in various countries as needed</li>
+                        <li><strong>Humanitarian Focus:</strong> Advocates for Wakanda to share its resources</li>
+                        <li><strong>Combat Skills:</strong> Highly trained in espionage and martial arts</li>
+                        <li><strong>Cultural Insight:</strong> Understands both Wakandan and outside perspectives</li>
+                        <li><strong>Independent Spirit:</strong> Follows her own moral compass</li>
+                    </ul>
+                    <p>Nakia believes Wakanda has a responsibility to help the less fortunate around the world, particularly in Africa. This philosophy sometimes puts her at odds with Wakanda's traditional isolationism, but her compassion and results have earned respect.</p>
+                    <p>As a War Dog, Nakia has assumed many identities across the globe, gathering intelligence while helping communities in need. Her work has been instrumental in guiding Wakanda's careful outreach programs.</p>`
+                }
+                // More detail pages can be added here
+            };
+            
+            // Show detail page function
+            function showDetailPage(detailId) {
+                const content = detailContent[detailId];
+                if (content) {
+                    detailTitle.textContent = content.title;
+                    detailImage.style.backgroundImage = `url('${content.image}')`;
+                    detailText.innerHTML = content.text;
+                    detailPage.style.display = 'block';
+                    
+                    // Scroll to top of detail page
+                    detailPage.scrollTo(0, 0);
+                }
+            }
         });
     </script>
 </body>
