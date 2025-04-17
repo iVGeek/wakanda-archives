@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakanda Archives | The Secret Nation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wakanda-purple: #2a0845;
+            --vibranium-blue: #0d6e9e;
+            --vibranium-gold: #d4af37;
+            --tech-teal: #00c8c8;
+            --dark-bg: #0a0a12;
+            --text-light: #e6e6e6;
+            --text-glow: 0 0 8px rgba(0, 200, 200, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(13, 110, 158, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to bottom, rgba(42, 8, 69, 0.9), rgba(42, 8, 69, 0.7));
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--vibranium-gold);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            background: var(--vibranium-gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            color: var(--wakanda-purple);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--vibranium-gold), var(--tech-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--text-glow);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--tech-teal);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--tech-teal);
+            text-shadow: var(--text-glow);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--vibranium-gold), var(--tech-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--text-glow);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            color: var(--tech-teal);
+            border: 2px solid var(--tech-teal);
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 200, 200, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--tech-teal);
+            color: var(--dark-bg);
+            box-shadow: 0 0 25px rgba(0, 200, 200, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Main Content Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--vibranium-gold);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--tech-teal);
+            box-shadow: var(--text-glow);
+        }
+
+        /* About Wakanda Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: rgba(42, 8, 69, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 200, 200, 0.2);
+            border: 1px solid var(--tech-teal);
+        }
+
+        .about-card h3 {
+            color: var(--vibranium-gold);
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-card h3::before {
+            content: '•';
+            color: var(--tech-teal);
+            font-size: 2rem;
+        }
+
+        /* Technology Section */
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            background: rgba(10, 10, 18, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--vibranium-blue);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--tech-teal);
+            box-shadow: 0 5px 20px rgba(0, 200, 200, 0.3);
+        }
+
+        .tech-img {
+            height: 200px;
+            background: var(--wakanda-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--vibranium-gold);
+        }
+
+        .tech-content {
+            padding: 1.5rem;
+        }
+
+        .tech-content h3 {
+            color: var(--tech-teal);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Culture Section */
+        .culture-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+            padding-left: 50px;
+        }
+
+        .culture-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--vibranium-blue), var(--tech-teal));
+            box-shadow: var(--text-glow);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: rgba(42, 8, 69, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -40px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--vibranium-gold);
+            border: 3px solid var(--tech-teal);
+        }
+
+        .timeline-date {
+            color: var(--vibranium-gold);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Royal Family Section */
+        .royal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .royal-member {
+            text-align: center;
+            background: rgba(42, 8, 69, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .royal-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            border-color: var(--vibranium-gold);
+        }
+
+        .royal-img {
+            height: 250px;
+            background: var(--wakanda-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--vibranium-gold);
+        }
+
+        .royal-info {
+            padding: 1.5rem;
+        }
+
+        .royal-info h3 {
+            color: var(--vibranium-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .royal-title {
+            color: var(--tech-teal);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to bottom, rgba(42, 8, 69, 0.9), rgba(42, 8, 69, 0.7));
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--vibranium-gold);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--vibranium-gold), var(--tech-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--tech-teal);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--tech-teal);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .credits {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Wakandan Decorative Elements */
+        .wakandan-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(13, 110, 158, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 25%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .vibranium-particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: var(--tech-teal);
+            border-radius: 50%;
+            box-shadow: 0 0 5px 1px var(--tech-teal);
+            z-index: -1;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Kimoyo Bead Interface Effect */
+        .kimoyo-interface {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(13, 110, 158, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--tech-teal);
+            box-shadow: 0 0 15px rgba(0, 200, 200, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .kimoyo-interface:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 200, 200, 0.6);
+        }
+
+        .kimoyo-center {
+            width: 20px;
+            height: 20px;
+            background: var(--tech-teal);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Background Elements -->
+    <div class="wakandan-pattern"></div>
+    <div id="particles"></div>
+
+    <!-- Kimoyo Bead Interface -->
+    <div class="kimoyo-interface">
+        <div class="kimoyo-center"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-img">W</div>
+                <div class="logo-text">Wakanda Archives</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Wakanda</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#culture">Culture</a></li>
+                    <li><a href="#royal-family">Royal Family</a></li>
+                    <li><a href="#visit">Visit</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-over-a-city-at-night-12211-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Wakanda Forever</h1>
+            <p>The most technologically advanced nation on Earth, hidden from the outside world for centuries. 
+               Discover the secrets of our vibranium-powered civilization.</p>
+            <a href="#about" class="cta-button">Enter Wakanda</a>
+        </div>
+    </section>
+
+    <!-- About Wakanda Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">The Nation of Wakanda</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>History</h3>
+                <p>Wakanda's history dates back over 10,000 years when a massive meteorite containing vibranium, 
+                   the strongest metal in the universe, crashed into the heart of Africa. Five tribes settled 
+                   around the crater and formed the nation of Wakanda, with the Black Panther serving as both 
+                   ruler and protector.</p>
+            </div>
+            <div class="about-card">
+                <h3>Geography</h3>
+                <p>Located in Northeast Africa, Wakanda is bordered by Kenya, Ethiopia, and South Sudan. 
+                   The capital, Birnin Zana (the Golden City), sits at the center of the nation. Wakanda's 
+                   advanced cloaking technology has hidden its true nature from outsiders, appearing as 
+                   third-world nation to the outside world.</p>
+            </div>
+            <div class="about-card">
+                <h3>Government</h3>
+                <p>Wakanda is a constitutional monarchy with a council of tribal elders advising the king or queen. 
+                   The ruler also serves as the Black Panther, protector of Wakanda. The Dora Milaje serve as 
+                   special forces and royal guards. Each of the five tribes has representation in government.</p>
+            </div>
+            <div class="about-card">
+                <h3>Economy</h3>
+                <p>Despite its isolation, Wakanda has the most advanced economy on Earth, powered by vibranium 
+                   technology. The nation is self-sufficient with advanced agriculture, manufacturing, and energy 
+                   production. Wakanda has never been colonized and maintains no foreign debt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="section">
+        <h2 class="section-title">Vibranium Technology</h2>
+        <div class="tech-showcase">
+            <div class="tech-item">
+                <div class="tech-img">⚡</div>
+                <div class="tech-content">
+                    <h3>Vibranium Power</h3>
+                    <p>Vibranium absorbs kinetic energy, making it the perfect power source. Wakandan cities 
+                       are powered by vibranium reactors that provide clean, limitless energy without pollution 
+                       or waste.</p>
+                </div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-img">💊</div>
+                <div class="tech-content">
+                    <h3>Medical Advancements</h3>
+                    <p>Wakandan medicine can heal wounds in hours, regrow damaged tissue, and cure diseases 
+                       considered terminal elsewhere. The Heart-Shaped Herb enhances physical abilities and is 
+                       reserved for the Black Panther.</p>
+                </div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-img">🚀</div>
+                <div class="tech-content">
+                    <h3>Transportation</h3>
+                    <p>From vibranium-powered maglev trains to silent hovercraft and space-faring vessels, 
+                       Wakandan transportation technology is centuries ahead of the outside world. The Royal Talon 
+                       Fighter is the pinnacle of Wakandan aerospace engineering.</p>
+                </div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-img">📱</div>
+                <div class="tech-content">
+                    <h3>Kimoyo Beads</h3>
+                    <p>These wearable devices function as communication tools, medical scanners, holographic 
+                       projectors, and more. The beads interface directly with Wakanda's information network 
+                       and can be controlled through gestures.</p>
+                </div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-img">🛡️</div>
+                <div class="tech-content">
+                    <h3>Defense Systems</h3>
+                    <p>Wakanda's energy shields can protect entire cities. The Border Tribe uses vibranium 
+                       weapons and cloaking tech to guard the nation's perimeter. The Great Mound is protected 
+                       by multiple defense layers.</p>
+                </div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-img">🌱</div>
+                <div class="tech-content">
+                    <h3>Agricultural Tech</h3>
+                    <p>Vibranium-enhanced soil and vertical farming allow Wakanda to produce abundant food 
+                       in small spaces. Genetic engineering has created crops resistant to disease and drought, 
+                       ensuring food security.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section id="culture" class="section">
+        <h2 class="section-title">Wakandan Culture</h2>
+        <div class="culture-timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Ancient Times</div>
+                <h3>Foundation of Wakanda</h3>
+                <p>The five tribes - Border, Merchant, Mining, River, and Jabari - unite under Bashenga, 
+                   the first Black Panther, after the vibranium meteor impact. The Panther Goddess Bast 
+                   becomes the primary deity.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1000 AD</div>
+                <h3>Golden City Established</h3>
+                <p>Birin Zana (Golden City) is founded as Wakanda's capital. The Great Mound is designated 
+                   as the sacred site where vibranium is mined and studied.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1600s</div>
+                <h3>Isolation Policy</h3>
+                <p>After encounters with European explorers and slavers, Wakanda adopts a strict isolationist 
+                   policy. Advanced cloaking technology is developed to hide the nation's true nature.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1900s</div>
+                <h3>Technological Renaissance</h3>
+                <p>Under King T'Chaka's father, Wakanda experiences rapid technological advancement. 
+                   Vibranium applications expand into medicine, energy, and computing.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2016</div>
+                <h3>Return of the Black Panther</h3>
+                <p>T'Challa becomes king after his father's death. Wakanda briefly opens to the world 
+                   before returning to isolation after the Blip.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023</div>
+                <h3>New Era of Outreach</h3>
+                <p>Under Queen Ramonda and Princess Shuri, Wakanda begins limited outreach programs, 
+                   sharing some technology and knowledge with the world while protecting its sovereignty.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Royal Family Section -->
+    <section id="royal-family" class="section">
+        <h2 class="section-title">The Royal Family</h2>
+        <div class="royal-grid">
+            <div class="royal-member">
+                <div class="royal-img">👑</div>
+                <div class="royal-info">
+                    <h3>Queen Ramonda</h3>
+                    <div class="royal-title">Queen Mother of Wakanda</div>
+                    <p>Wise and compassionate leader who guided Wakanda through the Blip and its aftermath. 
+                       Mother to T'Challa and Shuri.</p>
+                </div>
+            </div>
+            <div class="royal-member">
+                <div class="royal-img">🦸</div>
+                <div class="royal-info">
+                    <h3>King T'Challa</h3>
+                    <div class="royal-title">The Black Panther</div>
+                    <p>Brilliant warrior and scientist who modernized Wakanda's outreach to the world while 
+                       protecting its secrets. Enhanced by the Heart-Shaped Herb.</p>
+                </div>
+            </div>
+            <div class="royal-member">
+                <div class="royal-img">👩‍🔬</div>
+                <div class="royal-info">
+                    <h3>Princess Shuri</h3>
+                    <div class="royal-title">Head of Wakandan Design Group</div>
+                    <p>Genius inventor responsible for many of Wakanda's technological advancements. Creator 
+                       of the latest Black Panther suits and kimoyo bead technology.</p>
+                </div>
+            </div>
+            <div class="royal-member">
+                <div class="royal-img">💂</div>
+                <div class="royal-info">
+                    <h3>Okoye</h3>
+                    <div class="royal-title">General of the Dora Milaje</div>
+                    <p>Leader of Wakanda's elite all-female special forces. Fiercely loyal to the throne and 
+                       master of vibranium spear combat.</p>
+                </div>
+            </div>
+            <div class="royal-member">
+                <div class="royal-img">🛡️</div>
+                <div class="royal-info">
+                    <h3>M'Baku</h3>
+                    <div class="royal-title">Leader of the Jabari Tribe</div>
+                    <p>Head of the mountain-dwelling Jabari people who initially rejected vibranium technology 
+                       but now serves on the royal council.</p>
+                </div>
+            </div>
+            <div class="royal-member">
+                <div class="royal-img">👓</div>
+                <div class="royal-info">
+                    <h3>Nakia</h3>
+                    <div class="royal-title">War Dog</div>
+                    <p>Undercover operative who gathers intelligence from around the world. Advocate for 
+                       Wakanda sharing its resources with those in need.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section id="visit" class="section">
+        <h2 class="section-title">Visit Wakanda</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Travel Advisory</h3>
+                <p>Wakanda remains largely closed to outsiders. Limited diplomatic and scientific visas 
+                   are available through proper channels. All visitors are escorted and certain areas 
+                   remain off-limits to non-citizens.</p>
+            </div>
+            <div class="about-card">
+                <h3>Cultural Experiences</h3>
+                <p>Approved visitors may witness the Challenge Day ceremony, visit the Wakandan Design 
+                   Group museum, or attend the annual Vibranium Festival showcasing traditional arts 
+                   and technology.</p>
+            </div>
+            <div class="about-card">
+                <h3>Local Customs</h3>
+                <p>The Wakandan salute (crossed arms over chest) is appropriate when greeting officials. 
+                   Remove shoes when entering homes. Photography restrictions apply in many areas. 
+                   Respect all tribal traditions.</p>
+            </div>
+            <div class="about-card">
+                <h3>Safety Information</h3>
+                <p>Wakanda has virtually no crime. Medical facilities are unparalleled. The environment 
+                   is protected and pristine. However, unauthorized access to restricted areas will be 
+                   dealt with severely.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Wakanda Archives</div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#technology">Technology</a>
+                <a href="#culture">Culture</a>
+                <a href="#royal-family">Royalty</a>
+                <a href="#visit">Tourism</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link">📱</a>
+                <a href="#" class="social-link">💻</a>
+                <a href="#" class="social-link">📧</a>
+                <a href="#" class="social-link">🖥️</a>
+            </div>
+            <div class="copyright">
+                © 2023 Wakanda Archives. All content based on Marvel's Black Panther.
+                <br>This is an unofficial fan site, not affiliated with Marvel or Disney.
+            </div>
+            <div class="credits">
+                Made by IVGeek | <a href="https://github.com/IVGeek" style="color: var(--tech-teal);">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create vibranium particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'vibranium-particle';
+                
+                // Random positioning
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random animation duration
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+
+            // Kimoyo bead interaction
+            const kimoyoBead = document.querySelector('.kimoyo-interface');
+            kimoyoBead.addEventListener('click', function() {
+                alert('Kimoyo bead interface activated. Access restricted to Wakandan citizens.');
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
