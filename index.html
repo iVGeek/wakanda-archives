@@ -1113,8 +1113,18 @@
             margin-bottom: 1rem;
         }
     </style>
+    <!-- Add favicon -->
+    <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 10000; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; text-align: center;">
+        <div>
+            <div id="meteor-animation" style="width: 100%; height: 300px; background: url('https://example.com/meteor.gif') no-repeat center; background-size: contain;"></div>
+            <p id="loading-text">Finding signal...<br>Tracing vibranium meteorite path...</p>
+        </div>
+    </div>
+
     <!-- Decorative Background Elements -->
     <div class="wakandan-pattern"></div>
     <div id="particles"></div>
@@ -2024,6 +2034,31 @@
                 }
             }
         });
+
+        // Ensure images load properly
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = () => {
+                img.src = 'https://example.com/placeholder.jpg'; // Fallback image
+            };
+        });
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => loadingScreen.style.display = 'none', 500);
+            }, 3000); // Adjust duration as needed
+        });
+
+        // Optimize borders and layout
+        document.querySelectorAll('.about-card, .tech-item, .royal-member').forEach(item => {
+            item.style.border = '2px solid rgba(212, 175, 55, 0.5)';
+            item.style.padding = '1.5rem';
+        });
+
+        // Fix Black Panther necklace background
+        document.querySelector('.logo-img').style.backgroundImage = "url('https://example.com/black-panther-necklace.png')";
     </script>
 </body>
 </html>
