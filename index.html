@@ -636,7 +636,7 @@
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
-            background-image: url('https://i.pinimg.com/originals/3e/3e/3b/3e3e3b3e3e3e3b3e3e3e3b3e3e3e3b3e.jpg');
+            background-image: url('https://i.pinimg.com/originals/3e/3e/3b/3e3e3b3e3e3b3e3e3e3b3e3e3e3b3e.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -1204,6 +1204,30 @@
             border-width: 1px;
             box-sizing: border-box;
         }
+
+        /* Vibranium Network Visualization */
+        .vibranium-network {
+            background: rgba(42, 8, 69, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border: 1px solid var(--tech-teal);
+        }
+
+        .network-visualization {
+            height: 300px;
+            position: relative;
+            background: url('vibranium-network-bg.png');
+        }
+
+        .energy-node {
+            width: 20px;
+            height: 20px;
+            background: var(--tech-teal);
+            border-radius: 50%;
+            position: absolute;
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body>
@@ -1270,6 +1294,13 @@
         <button class="language-btn">Wakandan</button>
     </div>
 
+    <!-- Wakandan Language Translator -->
+    <div class="translator-tool">
+        <textarea placeholder="Type English text"></textarea>
+        <div class="wakandan-writing translation-output"></div>
+        <button class="cta-button">Translate</button>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="header-container">
@@ -1284,6 +1315,8 @@
                     <li><a href="#culture">Culture</a></li>
                     <li><a href="#royal-family">Royal Family</a></li>
                     <li><a href="#visit">Visit</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#training">Training</a></li>
                 </ul>
             </nav>
         </div>
@@ -1415,6 +1448,33 @@
                        in small spaces. Genetic engineering has created crops resistant to disease and drought, 
                        ensuring food security.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Vibranium Network Visualization -->
+        <div class="vibranium-network">
+            <h3>Vibranium Energy Network</h3>
+            <div class="network-visualization">
+                <div class="energy-node" data-node="great-mound"></div>
+                <div class="energy-node" data-node="golden-city"></div>
+                <!-- More nodes -->
+            </div>
+        </div>
+
+        <!-- Black Panther Suit Customizer -->
+        <div class="suit-customizer">
+            <h3>Black Panther Suit Customizer</h3>
+            <div class="suit-preview"></div>
+            <div class="customization-options">
+                <label>Energy Channeling: <input type="range" id="energyFlow"></label>
+                <label>Vibranium Weave: 
+                    <select id="weavePattern">
+                        <option>Traditional</option>
+                        <option>Modern</option>
+                        <option>Stealth</option>
+                    </select>
+                </label>
+                <button class="cta-button">Generate Suit</button>
             </div>
         </div>
     </section>
@@ -1555,18 +1615,28 @@
                 </div>
             </div>
         </div>
+
+        <!-- Enhanced Royal Family Tree -->
+        <div class="royal-family-tree">
+            <h3>Royal Lineage</h3>
+            <div class="tree-visualization">
+                <!-- Interactive family tree SVG -->
+            </div>
+        </div>
     </section>
 
     <!-- Visit Section -->
     <section id="visit" class="section">
         <h2 class="section-title">Visit Wakanda</h2>
         <div class="visit-container">
-            <div class="wakanda-map" id="wakandaMap">
-                <!-- Map points will be added via JavaScript -->
-                <div class="map-tooltip" id="mapTooltip">
-                    <h4 id="tooltipTitle">Location</h4>
-                    <p id="tooltipDesc">Description</p>
+            <!-- Enhanced 3D Map -->
+            <div class="wakanda-map-3d">
+                <div class="map-controls">
+                    <button class="map-view" data-view="political">Political</button>
+                    <button class="map-view" data-view="topographic">Topographic</button>
+                    <button class="map-view" data-view="energy">Energy Grid</button>
                 </div>
+                <canvas id="wakanda3dMap"></canvas>
             </div>
 
             <div class="festival-calendar">
@@ -1623,6 +1693,49 @@
         </div>
     </section>
 
+    <!-- Wakandan News Feed Section -->
+    <section id="news" class="section">
+        <h2 class="section-title">Wakanda Today</h2>
+        <div class="news-feed">
+            <!-- Content loaded via JS -->
+        </div>
+    </section>
+
+    <!-- Dora Milaje Training Simulator Section -->
+    <section id="training" class="section">
+        <h2 class="section-title">Dora Milaje Training</h2>
+        <div class="combat-simulator">
+            <div class="simulator-view"></div>
+            <div class="simulator-controls">
+                <button class="combat-move" data-move="spear-thrust">Spear Thrust</button>
+                <button class="combat-move" data-move="shield-block">Shield Block</button>
+                <!-- More moves -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Wakandan Cultural Quiz -->
+    <div class="wakanda-quiz">
+        <h3>Test Your Wakanda Knowledge</h3>
+        <div class="quiz-progress">Question 1 of 5</div>
+        <div class="quiz-question"></div>
+        <div class="quiz-options"></div>
+        <button class="cta-button quiz-next">Next Question</button>
+    </div>
+
+    <!-- Vibranium Market Section -->
+    <div class="vibranium-market">
+        <h3>Vibranium Exchange Rates</h3>
+        <div class="market-ticker">
+            <div class="ticker-item">
+                <span class="currency">1g Vibranium</span>
+                <span class="value">$10,250</span>
+                <span class="change">↑2.5%</span>
+            </div>
+            <!-- More items -->
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1633,6 +1746,8 @@
                 <a href="#culture">Culture</a>
                 <a href="#royal-family">Royalty</a>
                 <a href="#visit">Tourism</a>
+                <a href="#news">News</a>
+                <a href="#training">Training</a>
                 <a href="#">Privacy</a>
                 <a href="#">Terms</a>
             </div>
@@ -2142,6 +2257,42 @@
                     detailPage.scrollTo(0, 0);
                 }
             }
+
+            // Wakandan News Feed
+            const wakandaNews = [
+                {
+                    title: "New Vibranium Research Breakthrough",
+                    date: "2023-11-15",
+                    summary: "Princess Shuri announces more efficient energy storage method"
+                },
+                // More news items...
+            ];
+
+            function loadNews() {
+                const feed = document.querySelector('.news-feed');
+                wakandaNews.forEach(item => {
+                    feed.innerHTML += `
+                    <div class="news-item">
+                        <h4>${item.title}</h4>
+                        <div class="news-date">${item.date}</div>
+                        <p>${item.summary}</p>
+                    </div>`;
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', loadNews);
+
+            // Placeholder for 3D Map
+            console.log('3D Map Placeholder');
+
+            // Wakandan Language Translator
+            document.querySelector('.translator-tool button').addEventListener('click', function() {
+                const englishText = document.querySelector('.translator-tool textarea').value;
+                const wakandanText = englishText.split('').map(char => 
+                    char.match(/[a-z]/i) ? '𑣿' : char
+                ).join('');
+                document.querySelector('.translation-output').textContent = wakandanText;
+            });
         });
     </script>
 </body>
